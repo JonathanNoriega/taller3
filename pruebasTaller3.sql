@@ -23,4 +23,13 @@ primary key (idSilla,
 idFuncion)
 );
 DROP TABLE RESERVAS CASCADE CONSTRAINTS; 
+
+
+
+Select * from reservas; --Cliente 1
+
+Select * from reservas; --Cliente 2
+
+SET autocommit 1; --Cliente 1
+
  
