@@ -38,10 +38,8 @@ SELECT * FROM RESERVAS; --Cliente 1
 
 
 
-BEGIN TRANSACTION;
-
 SET AUTOCOMMIT OFF;
-
+BEGIN TRANSACTION;
 
 INSERT INTO Reservas (id_reserva, id_cliente, id_funcion, fecha_reserva)
 VALUES (id_reserva_param, id_cliente_param, id_funcion_param, SYSDATE);
@@ -54,7 +52,7 @@ VALUES (id_reserva_param, id_silla_1_param, SYSDATE);
 INSERT INTO SillasReservas (id_reserva, id_silla, fecha_creacion)
 VALUES (id_reserva_param, id_silla_2_param, SYSDATE);
 
-
+END;
 COMMIT;
 
  
