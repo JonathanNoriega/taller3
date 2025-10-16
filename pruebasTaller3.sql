@@ -55,4 +55,9 @@ VALUES (id_reserva_param, id_silla_2_param, SYSDATE);
 END;
 COMMIT;
 
+
+
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) VALUES (1, 'A1', 1); --Cliente 1
+
+ -- ReservarSillas – idS1 Select * from sillasreservas
  
