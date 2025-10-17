@@ -55,9 +55,13 @@ VALUES (id_reserva_param, id_silla_2_param, SYSDATE);
 END;
 COMMIT;
 
-
-
-INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) VALUES (1, 'A1', 1); --Cliente 1
-
+--t1
+INSERT INTO reservas (idReserva, idFuncion, idCliente, fecha, estado) VALUES (3, 1, 87654321, TO_DATE('2024-06-20', 'YYYY-MM-DD'), 'Reserva'); --Cliente 1
+--t2
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) VALUES (3, 'S1', 1); --Cliente 1
+select idReserva from SillasReservas where idSilla = 'S1' and idFuncion = 1; --Cliente 1
+select idReserva from SillasReservas where idSilla = 'S2' and idFuncion = 2; --Cliente 1
  -- ReservarSillas – idS1 Select * from sillasreservas
- 
+
+DROP TABLE RESERVAS CASCADE CONSTRAINTS;
+DROP TABLE SILLASRESERVAS CASCADE CONSTRAINTS;
