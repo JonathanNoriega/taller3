@@ -85,6 +85,7 @@ VALUES (1, 'S2', 1);
 -- t1: Operación 1 - Crear reserva  
 INSERT INTO reservas (idReserva, idFuncion, idCliente, fecha, estado)
 VALUES (2, 1, 87654321, SYSDATE, 'Reserva');
+COMMIT;
 
 -- t3: InserciónA - Reservar S2
 INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
@@ -93,3 +94,5 @@ VALUES (2, 'S2', 1);
 -- t5: InserciónB - Intentar reservar S1 (¡DEADLOCK! - Sesión 1 la tiene bloqueada)
 INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
 VALUES (2, 'S1', 1);
+COMMIT;
+ROLLBACK;
