@@ -101,8 +101,11 @@ ROLLBACK;
 
 
 -- t1: Actualizar
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) 
+VALUES (3, 'S1', 1);
+
 UPDATE SillasReservas 
-SET idReserva = 1 
+SET idReserva = 6
 WHERE idSilla = 'S1' AND idFuncion = 1;
 
 -- t3: Confirmar
