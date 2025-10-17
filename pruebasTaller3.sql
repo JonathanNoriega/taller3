@@ -60,8 +60,36 @@ INSERT INTO reservas (idReserva, idFuncion, idCliente, fecha, estado) VALUES (3,
 --t2
 INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) VALUES (3, 'S1', 1); --Cliente 1
 select idReserva from SillasReservas where idSilla = 'S1' and idFuncion = 1; --Cliente 1
-select idReserva from SillasReservas where idSilla = 'S2' and idFuncion = 2; --Cliente 1
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) VALUES (3, 'S2', 1); --Cliente 2
+select idReserva from SillasReservas where idSilla = 'S2' and idFuncion = 2; --Cliente 2
  -- ReservarSillas – idS1 Select * from sillasreservas
 
 DROP TABLE RESERVAS CASCADE CONSTRAINTS;
 DROP TABLE SILLASRESERVAS CASCADE CONSTRAINTS;
+
+--CLIENTE 1
+-- t1: Operación 1 - Crear reserva
+INSERT INTO reservas (idReserva, idFuncion, idCliente, fecha, estado) 
+VALUES (1, 1, 12345678, SYSDATE, 'Reserva');
+
+-- t2: InserciónA - Reservar S1
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) 
+VALUES (1, 'S1', 1);
+
+-- t3: InserciónB - Intentar reservar S2 (esperará porque Sesión 2 la tiene bloqueada)
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion) 
+VALUES (1, 'S2', 1);
+
+
+--CLIENTE 2
+-- t1: Operación 1 - Crear reserva  
+INSERT INTO reservas (idReserva, idFuncion, idCliente, fecha, estado)
+VALUES (2, 1, 87654321, SYSDATE, 'Reserva');
+
+-- t3: InserciónA - Reservar S2
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
+VALUES (2, 'S2', 1);
+
+-- t5: InserciónB - Intentar reservar S1 (¡DEADLOCK! - Sesión 1 la tiene bloqueada)
+INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
+VALUES (2, 'S1', 1);
