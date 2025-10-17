@@ -90,6 +90,7 @@ COMMIT;
 -- t3: InserciónA - Reservar S2
 INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
 VALUES (2, 'S2', 1);
+select * from SillasReservas;
 
 -- t5: InserciónB - Intentar reservar S1 (¡DEADLOCK! - Sesión 1 la tiene bloqueada)
 INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
