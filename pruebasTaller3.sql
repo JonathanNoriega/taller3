@@ -97,3 +97,28 @@ INSERT INTO SillasReservas (idReserva, idSilla, idFuncion)
 VALUES (2, 'S1', 1);
 COMMIT;
 ROLLBACK;
+
+
+
+-- t1: Actualizar
+UPDATE SillasReservas 
+SET idReserva = 1 
+WHERE idSilla = 'S1' AND idFuncion = 1;
+
+-- t3: Confirmar
+COMMIT;
+
+-- t5: Segunda actualización  
+UPDATE SillasReservas 
+SET idReserva = 3 
+WHERE idSilla = 'S1' AND idFuncion = 1;
+
+
+-- t2: Primera consulta
+SELECT * FROM SillasReservas WHERE idSilla = 'S1';
+
+-- t4: Segunda consulta (después del commit)
+SELECT * FROM SillasReservas WHERE idSilla = 'S1';
+
+-- t6: Tercera consulta
+SELECT * FROM SillasReservas WHERE idSilla = 'S1';
